@@ -7,20 +7,20 @@ import {TextInput} from "react-native-paper";
 import RoundedButton from "../components/RoundedButton";
 
 //% utils
-import {colors} from "../utils";
+import {sizes} from "../utils";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   inputContainer: {
-    padding: 25,
+    padding: sizes.spacing.lg,
     justifyContent: "flex-start",
     flexDirection: "row",
   },
   textInput: {
     flex: 1,
-    marginRight: 10,
+    marginRight: sizes.spacing.sm,
   },
   button: {
     justifyContent: "center",
