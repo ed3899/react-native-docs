@@ -1,8 +1,14 @@
 //% libs
-import {StyleSheet, Platform, StatusBar as StatusBarNative} from "react-native";
+import {
+  StyleSheet,
+  Platform,
+  StatusBar as StatusBarNative,
+  View,
+  Text,
+} from "react-native";
 
 //% comps
-import {View, Text} from "./components/Themed";
+import {Focus} from "./features/Focus";
 
 //% utils
 import {colors} from "./utils";
@@ -20,9 +26,6 @@ const styles = StyleSheet.create({
     padding: Platform.OS === "android" ? StatusBarNative.currentHeight : 100,
     backgroundColor: colors.darkBlue,
   },
-  text: {
-    color: colors.white,
-  },
 });
 
 const App = () => {
@@ -34,7 +37,7 @@ const App = () => {
   } else {
     return (
       <SafeAreaProvider style={styles.container}>
-        <Text style={styles.text}>Hello Worlasdfad!</Text>
+        <Focus />
       </SafeAreaProvider>
     );
   }
