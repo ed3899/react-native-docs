@@ -3,6 +3,8 @@ import React, {useState} from "react";
 
 import {View, Text, StyleSheet} from "react-native";
 
+import {ProgressBar} from "react-native-paper";
+
 //% comps
 import CountDown from "../components/Countdown";
 import RoundedButton from "../components/RoundedButton";
@@ -54,12 +56,15 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
   const {focusSubject = "Default value"} = props_;
 
   const [isStarted, setIsStarted] = useState(false);
+  const [progress, setProgress] = useState(1);
 
   return (
     <View style={styles.container}>
       <View style={styles.countdown}>
         <CountDown
-          onProgress={() => ({})}
+          onProgress={progress_ => {
+            setProgress(progress_);
+          }}
           onEnd={() => ({})}
           isPaused={!isStarted}
         />
@@ -67,6 +72,14 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
           <Text style={styles.title}>Focusing on:</Text>
           <Text style={styles.task}>{focusSubject}</Text>
         </View>
+      </View>
+
+      <View style={{paddingTop: sizes.spacing.sm}}>
+        <ProgressBar
+          progress={progress}
+          color={colors.progressBar}
+          style={{height: sizes.spacing.sm}}
+        />
       </View>
 
       {/* Button  */}

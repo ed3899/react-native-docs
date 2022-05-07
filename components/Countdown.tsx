@@ -32,18 +32,18 @@ const minutesToMillis = (min_: number) => min_ * 1000 * 60;
 const formatTime = (time_: number) => (time_ < 10 ? `0${time_}` : time_);
 
 type CountDownFuncsT = {
-  onProgress: (arg: number) => {};
+  onProgress: (progress_: number) => void;
   onEnd: () => {};
 };
 
 type CountDownPropsT = {
-  minutes: number;
+  minutes: Parameters<CountDownFuncsT["onProgress"]>[0];
   isPaused: boolean;
 };
 
-const CountDown: React.FC<
-  Partial<CountDownPropsT> & CountDownFuncsT
-> = props_ => {
+type CountDownComponentT = React.FC<Partial<CountDownPropsT> & CountDownFuncsT>;
+
+const CountDown: CountDownComponentT = props_ => {
   const {
     minutes: minutes_ = 0.1,
     isPaused: isPaused_,
@@ -73,6 +73,7 @@ const CountDown: React.FC<
   }, [minutes_]);
 
   useEffect(() => {
+    console.log(millis / minutesToMillis(minutes_));
     onProgress_(millis / minutesToMillis(minutes_));
   }, [millis]);
 
