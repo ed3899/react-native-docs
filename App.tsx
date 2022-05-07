@@ -4,6 +4,9 @@ import {StyleSheet, Platform, StatusBar as StatusBarNative} from "react-native";
 //% comps
 import {View, Text} from "./components/Themed";
 
+//% utils
+import {colors} from "./utils";
+
 import {StatusBar} from "expo-status-bar";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 
@@ -15,9 +18,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: Platform.OS === "android" ? StatusBarNative.currentHeight : 100,
+    backgroundColor: colors.darkBlue,
   },
   text: {
-    color: "black",
+    color: colors.white,
   },
 });
 
