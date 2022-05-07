@@ -4,11 +4,11 @@ import {
   Platform,
   StatusBar as StatusBarNative,
   View,
-  Text,
 } from "react-native";
 
 //% comps
 import {Focus} from "./features/Focus";
+import {TextInput} from "react-native-paper";
 
 //% utils
 import {colors} from "./utils";
@@ -26,21 +26,24 @@ const styles = StyleSheet.create({
     padding: Platform.OS === "android" ? StatusBarNative.currentHeight : 100,
     backgroundColor: colors.darkBlue,
   },
+  inputContainer: {
+    flex: 0.5,
+    padding: 25,
+    justifyContent: "flex-start",
+  },
 });
 
 const App = () => {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider style={styles.container}>
-        <Focus />
-      </SafeAreaProvider>
-    );
-  }
+  return (
+    <SafeAreaProvider style={styles.container}>
+      <View style={styles.inputContainer}>
+        <TextInput label="What would you like to focus on?" />
+      </View>
+    </SafeAreaProvider>
+  );
 };
 
 export default App;
