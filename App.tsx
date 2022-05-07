@@ -1,5 +1,5 @@
 //% libs
-import {StyleSheet} from "react-native";
+import {StyleSheet, Platform, StatusBar as StatusBarNative} from "react-native";
 
 //% comps
 import {View, Text} from "./components/Themed";
@@ -14,11 +14,14 @@ import Navigation from "./navigation";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
+    padding: Platform.OS === "android" ? StatusBarNative.currentHeight : 100,
+  },
+  text: {
+    color: "black",
   },
 });
 
-export default function App() {
+const App = () => {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -26,9 +29,11 @@ export default function App() {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        <Text>Hello World!</Text>
-      </View>
+      <SafeAreaProvider style={styles.container}>
+        <Text style={styles.text}>Hello Worlasdfad!</Text>
+      </SafeAreaProvider>
     );
   }
-}
+};
+
+export default App;
