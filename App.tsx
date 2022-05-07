@@ -1,4 +1,6 @@
 //% libs
+import {useState} from "react";
+
 import {
   StyleSheet,
   Platform,
@@ -7,20 +9,13 @@ import {
   Text,
 } from "react-native";
 
+import {SafeAreaProvider} from "react-native-safe-area-context";
 //% comps
 import {Focus} from "./features/Focus";
-import {TextInput} from "react-native-paper";
+import CountDown from "./components/Countdown";
 
 //% utils
 import {colors} from "./utils";
-
-import {StatusBar} from "expo-status-bar";
-import {SafeAreaProvider} from "react-native-safe-area-context";
-
-import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
-import {useState} from "react";
 
 const styles = StyleSheet.create({
   container: {
