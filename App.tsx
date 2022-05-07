@@ -12,7 +12,7 @@ import {
 import {SafeAreaProvider} from "react-native-safe-area-context";
 //% comps
 import {Focus} from "./features/Focus";
-import CountDown from "./components/Countdown";
+import Timer from "./features/Timer";
 
 //% utils
 import {colors} from "./utils";
@@ -33,11 +33,12 @@ const App = () => {
       {currentSubject === "" ? (
         <Focus addSubject={subject_ => setCurrentSubject(subject_)} />
       ) : (
-        <View>
-          <Text style={{color: colors.white}}>
-            I am going to render the timer for {currentSubject}
-          </Text>
-        </View>
+        <Timer
+          focusSubject={currentSubject}
+          onTimerEnd={() => ({})}
+          clearSubject={() => ({})}
+        />
+        //! Add Timer component 1:11
       )}
     </SafeAreaProvider>
   );
