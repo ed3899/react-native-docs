@@ -26,11 +26,6 @@ const styles = StyleSheet.create({
     padding: Platform.OS === "android" ? StatusBarNative.currentHeight : 100,
     backgroundColor: colors.darkBlue,
   },
-  inputContainer: {
-    flex: 0.5,
-    padding: 25,
-    justifyContent: "flex-start",
-  },
 });
 
 const App = () => {
@@ -39,9 +34,7 @@ const App = () => {
 
   return (
     <SafeAreaProvider style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput label="What would you like to focus on?" />
-      </View>
+      <Focus />
     </SafeAreaProvider>
   );
 };
