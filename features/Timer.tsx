@@ -8,7 +8,7 @@ import CountDown from "../components/Countdown";
 import RoundedButton from "../components/RoundedButton";
 
 //% utils
-import {colors} from "../utils";
+import {sizes, colors} from "../utils";
 
 const styles = StyleSheet.create({
   container: {
@@ -63,8 +63,13 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
           onEnd={() => ({})}
           isPaused={!isStarted}
         />
+        <View style={{paddingTop: sizes.spacing.xxl}}>
+          <Text style={styles.title}>Focusing on:</Text>
+          <Text style={styles.task}>{focusSubject}</Text>
+        </View>
       </View>
 
+      {/* Button  */}
       <View style={styles.buttonWrapper}>
         {!isStarted && (
           <RoundedButton title="start" onPress={() => setIsStarted(true)} />
