@@ -32,13 +32,19 @@ export type RoundedButtonPropsT = {
 };
 
 const RoundedButton: React.FC<Partial<RoundedButtonPropsT>> = props_ => {
-  const {style, textStyle, size = 2, title = "Default title", onPress} = props_;
+  const {
+    style,
+    textStyle,
+    size = 125,
+    title = "Default title",
+    onPress,
+  } = props_;
 
   return (
     <TouchableOpacity
-      style={[styles(size, colors).text, textStyle]}
+      style={[styles(size, colors).radius, style]}
       onPress={onPress}>
-      <Text style={[styles(size, colors).text, textStyle]}>{title}</Text>;
+      <Text style={[styles(size, colors).text, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };
