@@ -27,8 +27,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Focus = () => {
-  const [subject, setSubject] = useState<string | undefined>("");
+type FocusPropsT = {
+  addSubject: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const Focus: React.FC<FocusPropsT> = props_ => {
+  const {addSubject} = props_;
+  const [subject, setSubject] = useState<string>("");
 
   return (
     <View style={styles.container}>
@@ -39,7 +44,11 @@ export const Focus = () => {
           label="What would you like to focus on?"
         />
         <View style={styles.button}>
-          <RoundedButton title="+" size={50} />
+          <RoundedButton
+            title="+"
+            size={50}
+            onPress={() => addSubject(subject)}
+          />
         </View>
       </View>
     </View>

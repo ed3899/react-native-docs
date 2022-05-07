@@ -4,6 +4,7 @@ import {
   Platform,
   StatusBar as StatusBarNative,
   View,
+  Text,
 } from "react-native";
 
 //% comps
@@ -19,6 +20,7 @@ import {SafeAreaProvider} from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
+import {useState} from "react";
 
 const styles = StyleSheet.create({
   container: {
@@ -29,12 +31,19 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  const [currentSubject, setCurrentSubject] = useState<string>("");
 
   return (
     <SafeAreaProvider style={styles.container}>
-      <Focus />
+      {currentSubject === "" ? (
+        <Focus addSubject={subject_ => setCurrentSubject(subject_)} />
+      ) : (
+        <View>
+          <Text style={{color: colors.white}}>
+            I am going to render the timer for {currentSubject}
+          </Text>
+        </View>
+      )}
     </SafeAreaProvider>
   );
 };
