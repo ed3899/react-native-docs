@@ -59,6 +59,7 @@ const CountDown: React.FC<
     setMillis(time => {
       if (time === 0) {
         clearInterval(interval.current!);
+        console.log("Ended");
         onEnd_();
         return time;
       }
