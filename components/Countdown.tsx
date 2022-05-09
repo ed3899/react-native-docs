@@ -33,7 +33,11 @@ const formatTime = (time_: number) => (time_ < 10 ? `0${time_}` : time_);
 
 type CountDownFuncsT = {
   onProgress: (progress_: number) => void;
-  onEnd: () => void;
+  /**
+   * @abstract A function that runs at the end of the timer
+   * @param callback_ A callback to be called at the end of the timer
+   */
+  onEnd: (callback_: () => void) => void;
 };
 
 type CountDownPropsT = {
@@ -55,11 +59,17 @@ const CountDown: CountDownComponentT = props_ => {
 
   const [millis, setMillis] = useState(-1); //!
 
+  /**
+   * @abstract Set the timer back to the initial minutes
+   * @returns 
+   */
+  const reset = () => setMillis(minutesToMillis(minutes_));
+
   const countDown = () => {
     setMillis(time => {
       if (time === 0) {
         clearInterval(interval.current!);
-        onEnd_();
+        onEnd_(reset);
         return time;
       }
       const timeLeft = time - 1000;

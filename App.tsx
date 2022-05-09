@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  const [currentSubject, setCurrentSubject] = useState<string>("test");
-  console.log(currentSubject);
+  const [currentSubject, setCurrentSubject] = useState<string>("");
 
   return (
     <SafeAreaProvider style={styles.container}>

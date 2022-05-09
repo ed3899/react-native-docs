@@ -79,6 +79,14 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
   const [progress, setProgress] = useState(1);
   const [minutes, setMinutes] = useState(0.1);
 
+  //%
+  const onEnd = (reset: () => void) => {
+    Vibration.vibrate(PATTERN);
+    setIsStarted(false);
+    setProgress(1);
+    reset();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.countdown}>
@@ -87,9 +95,7 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
           onProgress={progress_ => {
             setProgress(progress_);
           }}
-          onEnd={() => {
-            Vibration.vibrate(PATTERN);
-          }}
+          onEnd={onEnd}
           isPaused={!isStarted}
         />
         <View style={{paddingTop: sizes.spacing.xxl}}>
