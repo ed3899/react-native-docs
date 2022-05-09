@@ -33,7 +33,8 @@ type FocusHistoryPropsT = {
 const FocusHistory: React.FC<Partial<FocusHistoryPropsT>> = props_ => {
   const {history} = props_;
 
-  if (!history || !history.length) return <Fragment></Fragment>;
+  if (!history || !history.length)
+    return <Text style={styles.title}>We haven't focused on anything yet</Text>;
 
   const renderItem: ListRenderItem<FocusHistoryPropsT["history"][0]> = ({
     item,

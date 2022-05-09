@@ -28,13 +28,7 @@ const styles = StyleSheet.create({
 
 const App = function () {
   const [currentSubject, setCurrentSubject] = useState<string>("");
-  const [history, setHistory] = useState<string[]>([
-    "temp fea",
-    "temp fea",
-    "temp fea",
-    "temp fea",
-    "temp fea",
-  ]);
+  const [history, setHistory] = useState<string[]>([]);
 
   return (
     <SafeAreaProvider style={styles.container}>
@@ -46,7 +40,9 @@ const App = function () {
       ) : (
         <Timer
           focusSubject={currentSubject}
-          onTimerEnd={() => ({})}
+          onTimerEnd={subject => {
+            setHistory([...history, subject]);
+          }}
           clearSubject={() => setCurrentSubject("")}
         />
         //! Add Timer component 1:11
