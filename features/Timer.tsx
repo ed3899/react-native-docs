@@ -5,6 +5,8 @@ import {View, Text, StyleSheet, Vibration} from "react-native";
 
 import {ProgressBar} from "react-native-paper";
 
+import {useKeepAwake} from "expo-keep-awake";
+
 //% comps
 import CountDown from "../components/Countdown";
 import RoundedButton from "../components/RoundedButton";
@@ -73,6 +75,7 @@ type TimerFuncsT = {
 };
 
 const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
+  useKeepAwake();
   const {focusSubject = "Default value", clearSubject} = props_;
 
   const [isStarted, setIsStarted] = useState(false);
