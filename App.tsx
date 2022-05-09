@@ -28,7 +28,13 @@ const styles = StyleSheet.create({
 
 const App = function () {
   const [currentSubject, setCurrentSubject] = useState<string>("");
-  const [history, setHistory] = useState<string[]>([]);
+  const [history, setHistory] = useState<string[]>([
+    "temp fea",
+    "temp fea",
+    "temp fea",
+    "temp fea",
+    "temp fea",
+  ]);
 
   return (
     <SafeAreaProvider style={styles.container}>
