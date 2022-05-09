@@ -11,7 +11,7 @@ import {sizes} from "../utils";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+   
   },
   inputContainer: {
     padding: sizes.spacing.lg,
@@ -28,9 +28,15 @@ const styles = StyleSheet.create({
 });
 
 type FocusPropsT = {
+  /**
+   * @abstract Function to add subjects to the state
+   */
   addSubject: React.Dispatch<React.SetStateAction<string>>;
 };
 
+/**
+ * @abstract Focus timer
+ */
 export const Focus: React.FC<FocusPropsT> = props_ => {
   const {addSubject} = props_;
   const [subject, setSubject] = useState<string>("");

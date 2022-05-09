@@ -1,5 +1,5 @@
 //% libs
-import {useState} from "react";
+import {Fragment, useState} from "react";
 
 import {
   StyleSheet,
@@ -13,6 +13,7 @@ import {SafeAreaProvider} from "react-native-safe-area-context";
 //% comps
 import {Focus} from "./features/Focus";
 import Timer from "./features/Timer";
+import FocusHistory from "./features/FocusHistory";
 
 //% utils
 import {colors} from "./utils";
@@ -25,13 +26,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = () => {
+const App = function () {
   const [currentSubject, setCurrentSubject] = useState<string>("");
+  const [history, setHistory] = useState<string[]>([]);
 
   return (
     <SafeAreaProvider style={styles.container}>
       {currentSubject === "" ? (
-        <Focus addSubject={subject_ => setCurrentSubject(subject_)} />
+        <Fragment>
+          <Focus addSubject={subject_ => setCurrentSubject(subject_)} />
+          <FocusHistory history={history} />
+        </Fragment>
       ) : (
         <Timer
           focusSubject={currentSubject}
