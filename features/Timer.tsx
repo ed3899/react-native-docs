@@ -8,6 +8,7 @@ import {ProgressBar} from "react-native-paper";
 //% comps
 import CountDown from "../components/Countdown";
 import RoundedButton from "../components/RoundedButton";
+import Timing from "./Timing";
 
 //% utils
 import {sizes, colors} from "../utils";
@@ -40,16 +41,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  timingWrapper: {
+    flex: 0.1,
+    flexDirection: "row",
+    paddingTop: sizes.spacing.xxl,
+  },
   buttonWrapper: {
     flex: 0.3,
     flexDirection: "row",
-    padding: 15,
+    padding: sizes.spacing.md,
     justifyContent: "center",
     alignItems: "center",
   },
   clearSubject: {
     paddingBottom: 25,
     paddingLeft: 25,
+  },
+  clearSubjectWrapper: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
 
@@ -59,11 +69,11 @@ type TimerPropsT = {
 
 type TimerFuncsT = {
   onTimerEnd: () => {};
-  clearSubject: () => {};
+  clearSubject: () => void;
 };
 
 const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
-  const {focusSubject = "Default value"} = props_;
+  const {focusSubject = "Default value", clearSubject} = props_;
 
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
@@ -96,6 +106,10 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
         />
       </View>
 
+      <View style={styles.timingWrapper}>
+        <Timing onChangeTime={time_ => setMinutes(time_)} />
+      </View>
+
       {/* Button  */}
       <View style={styles.buttonWrapper}>
         {!isStarted && (
@@ -105,6 +119,11 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
         {isStarted && (
           <RoundedButton title="pause" onPress={() => setIsStarted(false)} />
         )}
+      </View>
+
+      {/* Clear */}
+      <View style={styles.clearSubjectWrapper}>
+        <RoundedButton size={50} title="-" onPress={() => clearSubject()} />
       </View>
     </View>
   );

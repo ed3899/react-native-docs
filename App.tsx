@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  const [currentSubject, setCurrentSubject] = useState<string>("Test");
+  const [currentSubject, setCurrentSubject] = useState<string>("test");
+  console.log(currentSubject);
 
   return (
     <SafeAreaProvider style={styles.container}>
@@ -36,7 +37,7 @@ const App = () => {
         <Timer
           focusSubject={currentSubject}
           onTimerEnd={() => ({})}
-          clearSubject={() => ({})}
+          clearSubject={() => setCurrentSubject("")}
         />
         //! Add Timer component 1:11
       )}
