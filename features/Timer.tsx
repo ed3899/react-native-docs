@@ -70,13 +70,13 @@ type TimerPropsT = {
 };
 
 type TimerFuncsT = {
-  onTimerEnd: () => {};
+  onTimerEnd: (focusSubject_: string) => void;
   clearSubject: () => void;
 };
 
 const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
   useKeepAwake();
-  const {focusSubject = "Default value", clearSubject} = props_;
+  const {focusSubject = "Default value", clearSubject, onTimerEnd} = props_;
 
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
@@ -88,6 +88,7 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
     setIsStarted(false);
     setProgress(1);
     reset();
+    onTimerEnd(focusSubject);
   };
 
   return (
