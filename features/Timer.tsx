@@ -1,7 +1,7 @@
 //% libs
 import React, {useState} from "react";
 
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Vibration} from "react-native";
 
 import {ProgressBar} from "react-native-paper";
 
@@ -11,6 +11,16 @@ import RoundedButton from "../components/RoundedButton";
 
 //% utils
 import {sizes, colors} from "../utils";
+
+const ONE_SECOND_IN_MS = 1000;
+
+const PATTERN = [
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -57,15 +67,19 @@ const Timer: React.FC<Partial<TimerPropsT> & TimerFuncsT> = props_ => {
 
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
+  const [minutes, setMinutes] = useState(0.1);
 
   return (
     <View style={styles.container}>
       <View style={styles.countdown}>
         <CountDown
+          minutes={minutes}
           onProgress={progress_ => {
             setProgress(progress_);
           }}
-          onEnd={() => ({})}
+          onEnd={() => {
+            Vibration.vibrate(PATTERN);
+          }}
           isPaused={!isStarted}
         />
         <View style={{paddingTop: sizes.spacing.xxl}}>

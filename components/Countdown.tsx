@@ -33,7 +33,7 @@ const formatTime = (time_: number) => (time_ < 10 ? `0${time_}` : time_);
 
 type CountDownFuncsT = {
   onProgress: (progress_: number) => void;
-  onEnd: () => {};
+  onEnd: () => void;
 };
 
 type CountDownPropsT = {
@@ -59,7 +59,6 @@ const CountDown: CountDownComponentT = props_ => {
     setMillis(time => {
       if (time === 0) {
         clearInterval(interval.current!);
-        console.log("Ended");
         onEnd_();
         return time;
       }
@@ -73,7 +72,6 @@ const CountDown: CountDownComponentT = props_ => {
   }, [minutes_]);
 
   useEffect(() => {
-    console.log(millis / minutesToMillis(minutes_));
     onProgress_(millis / minutesToMillis(minutes_));
   }, [millis]);
 
